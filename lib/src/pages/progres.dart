@@ -77,7 +77,6 @@ class _ProgresPageState extends State<ProgresPage> {
             controller: passwordController,
           ),
           SizedBox(height: 10),
-          SizedBox(height: 10),
            InputV2(
             label: 'Alumunium',
             hintText: '10% - 100%',

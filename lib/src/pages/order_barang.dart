@@ -50,44 +50,43 @@ class _OrderBarangPageState extends State<OrderBarangPage> {
               children: [
                 // Judul
            InputV2(
-            label: 'Galian Pondasi',
-            hintText: '10% - 100%',
+            label: 'Batu',
+            hintText: '',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('Galian Pondasi', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+              child: Text('Batu', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
             ),
             suffix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('%'),
+              child: Text('Truk'),
             ),
             controller: emailController,
           ),
           SizedBox(height: 10),
            InputV2(
-            label: 'Pondasi',
-            hintText: '10% - 100%',
+            label: 'Semen',
+            hintText: '100',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('Pondasi', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+              child: Text('Semen', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
             ),
             suffix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('%'),
+              child: Text('Sak'),
             ),
             controller: passwordController,
           ),
           SizedBox(height: 10),
-          SizedBox(height: 10),
            InputV2(
             label: 'Alumunium',
-            hintText: '10% - 100%',
+            hintText: '',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text('Alumunium', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
             ),
             suffix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('%'),
+              child: Text('kubik'),
             ),
             controller: confirmPasswordController,
           ),

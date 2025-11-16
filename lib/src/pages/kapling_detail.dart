@@ -1,6 +1,7 @@
 import 'package:aplikator/src/pages/order_barang.dart';
 import 'package:aplikator/src/pages/progres.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class KaplingDetailPage extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _KaplingDetailPageState extends State<KaplingDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aplikator', style: TextStyle( fontWeight: FontWeight.w800,
+        title: Text('Detail', style: GoogleFonts.poppins( fontWeight: FontWeight.w800,
             fontSize: 18,),),
         centerTitle: true,
         bottom: PreferredSize(
@@ -90,8 +91,8 @@ class _KaplingDetailPageState extends State<KaplingDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Proyek Sakura Indah',
-              style: TextStyle(
+              'Proyek Sakura Indah \n Cipatujah',
+              style: GoogleFonts.poppins(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey.shade800,
