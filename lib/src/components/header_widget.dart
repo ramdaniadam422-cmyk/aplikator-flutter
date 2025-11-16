@@ -9,7 +9,7 @@ class HeaderWidget extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: 130, // Sesuaikan tinggi header
+      height: 110, // Sesuaikan tinggi header
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -24,7 +24,7 @@ class HeaderWidget extends StatelessWidget {
           bottomRight: Radius.circular(width * 0.15),
         ),
       ),
-      padding: EdgeInsets.fromLTRB(24, 40, 24, 24),
+      padding: EdgeInsets.fromLTRB(24, 30, 24, 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

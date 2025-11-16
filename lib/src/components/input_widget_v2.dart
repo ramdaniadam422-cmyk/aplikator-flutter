@@ -55,15 +55,18 @@ class InputV2State extends State<InputV2> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-            color: Colors.grey[800],
-          ),
-        ),
-        SizedBox(height: 8),
+       if (widget.label.isNotEmpty) ...[
+  Text(
+    widget.label,
+    style: TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: 14,
+      color: Colors.grey[800],
+    ),
+  ),
+  SizedBox(height: 8),
+],
+
         TextField(
           controller: widget.controller,
           obscureText: widget.isPassword ? _obscureText : false,

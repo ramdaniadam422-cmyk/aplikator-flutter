@@ -50,43 +50,297 @@ class _OrderBarangPageState extends State<OrderBarangPage> {
               children: [
                 // Judul
            InputV2(
-            label: 'Batu',
+            label: 'Barang Toko',
             hintText: '',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('Batu', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
-            ),
-            suffix: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text('Truk'),
-            ),
-            controller: emailController,
-          ),
-          SizedBox(height: 10),
-           InputV2(
-            label: 'Semen',
-            hintText: '100',
-            prefix: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text('Semen', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+              child: Text('Semen Batako', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
             ),
             suffix: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text('Sak'),
             ),
-            controller: passwordController,
+            controller: emailController,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 5),
            InputV2(
-            label: 'Alumunium',
+            label: '',
             hintText: '',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('Alumunium', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+              child: Text('Besi Beton', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
             ),
             suffix: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('kubik'),
+              child: Text('Batang'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Baja Ringan', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m²'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Hebel', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Batang'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Paku', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Kg'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Kawat Beton', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Roll'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Gipsum', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Lembar'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Perekat Ubin', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m²'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Cat Tembok', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m²'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Kaca', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m²'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Pipa PVC', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Batang'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Fitting pipa', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Batang'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Kabel Listrik', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Roll'),
+            ),
+            controller: passwordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Saklar ', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Buah'),
+            ),
+            controller: passwordController,
+          ),
+
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Stop Kontak ', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Buah'),
+            ),
+            controller: passwordController,
+          ),
+
+          SizedBox(height: 10),
+           InputV2(
+            label: 'Barang Alam',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Pasir Pasang', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
+            ),
+            controller: confirmPasswordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Pasir Cor', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
+            ),
+            controller: confirmPasswordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Krikil / Batu Pecah', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
+            ),
+            controller: confirmPasswordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Batu Kali', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
+            ),
+            controller: confirmPasswordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Batu Gunung', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
+            ),
+            controller: confirmPasswordController,
+          ),
+          SizedBox(height: 5),
+           InputV2(
+            label: '',
+            hintText: '',
+            prefix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('Kayu Balok', style: TextStyle(color: Colors.grey[800], fontWeight: FontWeight.w600),),
+            ),
+            suffix: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('m³'),
             ),
             controller: confirmPasswordController,
           ),

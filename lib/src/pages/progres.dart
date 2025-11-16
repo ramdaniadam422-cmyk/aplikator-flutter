@@ -50,7 +50,7 @@ class _ProgresPageState extends State<ProgresPage> {
               children: [
                 // Judul
            InputV2(
-            label: 'Galian Pondasi',
+            label: '',
             hintText: '10% - 100%',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -62,9 +62,9 @@ class _ProgresPageState extends State<ProgresPage> {
             ),
             controller: emailController,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 6),
            InputV2(
-            label: 'Pondasi',
+            label: '',
             hintText: '10% - 100%',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -76,9 +76,9 @@ class _ProgresPageState extends State<ProgresPage> {
             ),
             controller: passwordController,
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 6),
            InputV2(
-            label: 'Alumunium',
+            label: '',
             hintText: '10% - 100%',
             prefix: Padding(
               padding: const EdgeInsets.all(12.0),

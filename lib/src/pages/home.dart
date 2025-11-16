@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             'Nomor Kapling',
             style:  GoogleFonts.poppins(
             fontSize: 18,
-            color: Colors.black45,
+            color: Colors.black87,
             fontWeight: FontWeight.w600,
             height: 1.5,
           ),
@@ -72,52 +72,20 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Lamp',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
+                            Text('Kapling A',
+                              style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
                                 color: Colors.grey[800],
                               )),
                             SizedBox(height: 4),
-                            Text('Kitchen - Bedroom',
+                            Text('Perum Sakura Indah Cipatujah',
                               style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.grey[600],
                               )),
-                            SizedBox(height: 4),
-                            Text('8 devices | 12 hours',
-                              style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[600],
-                              )),
                           ],
                         ),
-                      ),
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text('1000 Kw/h',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.grey[800],
-                            )),
-                          SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Icon(Icons.arrow_downward, size: 14, color: Colors.red.shade400),
-                              SizedBox(width: 4),
-                              Text('-11.2%',
-                                style: TextStyle(
-                                  color: Colors.red.shade400,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
                       ),
                     ],
                   ),
@@ -161,52 +129,20 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Air Conditioner',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                          Text('Kapling B',
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w600,
+                              fontSize: 18,
                               color: Colors.grey[800],
                             )),
                           SizedBox(height: 4),
-                          Text('Kitchen - Living Room',
+                          Text('Perum Sakura Indah Cipatujah',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey[600],
                             )),
-                          SizedBox(height: 4),
-                          Text('8 devices | 12 hours',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[600],
-                            )),
                         ],
                       ),
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text('1000 Kw/h',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.grey[800],
-                          )),
-                        SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Icon(Icons.arrow_upward, size: 14, color: Colors.green.shade400),
-                            SizedBox(width: 4),
-                            Text('10.2%',
-                              style: TextStyle(
-                                color: Colors.green.shade400,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ]
-                        ),
-                      ],
                     ),
                   ],
                 ),
@@ -249,52 +185,20 @@ class HomePage extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Wireless Speaker',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                          Text('Kaping C',
+                            style:  GoogleFonts.poppins(
+                                fontWeight: FontWeight.w600,
+                              fontSize: 18,
                               color: Colors.grey[800],
                             )),
                           SizedBox(height: 4),
-                          Text('Bedroom',
+                          Text('Perum Sakura Indah Cipatujah',
                             style: TextStyle(
                               fontSize: 12,
                               color: Colors.grey[600],
                             )),
-                          SizedBox(height: 4),
-                          Text('2 devices | 3 hours',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[600],
-                            )),
                         ],
                       ),
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text('1090 Kw/h',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Colors.grey[800],
-                          )),
-                        SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Icon(Icons.arrow_upward, size: 14, color: Colors.green.shade400),
-                            SizedBox(width: 4),
-                            Text('10.2%',
-                              style: TextStyle(
-                                color: Colors.green.shade400,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ]
-                        ),
-                      ],
                     ),
                   ],
                 ),

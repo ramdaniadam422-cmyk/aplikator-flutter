@@ -79,7 +79,7 @@ class _KaplingDetailPageState extends State<KaplingDetailPage> {
         bottom: PreferredSize(
     preferredSize: Size.fromHeight(1),
     child: Container(
-      color: Colors.black,
+      color: Colors.grey.shade800,
       height: 1,
     ),
   ),
