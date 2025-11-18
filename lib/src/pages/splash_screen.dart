@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:aplikator/src/pages/home.dart';
 import 'package:aplikator/src/pages/sign_in_9.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:aplikator/controller/LoginController.dart';
 
-import 'main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,18 +17,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final LoginController authController = Get.put(LoginController());
+
   @override
   void initState() {
     super.initState();
-    Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const SignInNine(),
-        ),
-      ),
-    );
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    String? token = await authController.getToken();
+    if (token != null) {
+      Get.offAll(() => HomePage());
+    } else {
+      Timer(const Duration(seconds: 3), () {
+        Get.offAll(() => const SignInPage());
+      });
+    }
   }
 
   @override
@@ -38,9 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             logo(160, 160),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             richText(30),
           ],
         ),
@@ -68,9 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: const [
           TextSpan(
             text: 'LOGIN ',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextStyle(fontWeight: FontWeight.w800),
           ),
           TextSpan(
             text: 'PAGES \nUI ',
@@ -81,9 +84,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           TextSpan(
             text: 'KIT',
-            style: TextStyle(
-              fontWeight: FontWeight.w800,
-            ),
+            style: TextStyle(fontWeight: FontWeight.w800),
           ),
         ],
       ),

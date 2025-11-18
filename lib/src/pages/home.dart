@@ -1,9 +1,29 @@
+// lib/src/pages/home.dart
+import 'package:aplikator/controller/BlokController.dart';
 import 'package:aplikator/src/components/header_widget.dart';
-import 'package:aplikator/src/pages/kapling_detail.dart';
+import 'package:aplikator/src/pages/kapling.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late BlokController blokController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Inisialisasi controller sekali saat widget dibuat
+    blokController = Get.put(BlokController());
+    print("🟢 [HomePage] BlokController diinisialisasi");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,195 +33,102 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Lengkungan di atas dengan warna 0xFF4FC3F7 dan radius bawah 25%
-            HeaderWidget(),
-
+              HeaderWidget(),
               SizedBox(height: 15),
-
               Text(
-            'Nomor Kapling',
-            style:  GoogleFonts.poppins(
-            fontSize: 18,
-            color: Colors.black87,
-            fontWeight: FontWeight.w600,
-            height: 1.5,
-          ),
-          ),
+                'Nomor Blok',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                  height: 1.5,
+                ),
+              ),
               SizedBox(height: 15),
 
-              // Lamp card dengan background putih dan shadow
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => KaplingDetailPage(),
-                    ),
+              // LIST BLOK DARI API
+              Expanded(
+                child: Obx(() {
+                  if (blokController.isLoading.value) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  if (blokController.blokList.isEmpty) {
+                    return Center(child: Text("Data blok kosong"));
+                  }
+
+                  return ListView.builder(
+                    itemCount: blokController.blokList.length,
+                    itemBuilder: (context, index) {
+                      final blok = blokController.blokList[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => KaplingPage(blok: blok),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(bottom: 16),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          padding: EdgeInsets.all(16),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.shade100,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                padding: EdgeInsets.all(12),
+                                child: Icon(
+                                  Icons.home,
+                                  size: 30,
+                                  color: Colors.blue.shade700,
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      blok.nama,
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18,
+                                        color: Colors.grey[800],
+                                      ),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      blok.deskripsi,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey[600],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white, // Background putih
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2), // Shadow
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 3), // Posisi shadow
-                      ),
-                    ],
-                  ),
-                  padding: EdgeInsets.all(16),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.yellow.shade100,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: EdgeInsets.all(12),
-                        child: Icon(Icons.lightbulb_outline,
-                          size: 30,
-                          color: Colors.yellow.shade700,
-                        ),
-                      ),
-
-                      SizedBox(width: 16),
-
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Kapling A',
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: Colors.grey[800],
-                              )),
-                            SizedBox(height: 4),
-                            Text('Perum Sakura Indah Cipatujah',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
-                              )),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 16),
-
-              // Air Conditioner card dengan background putih dan shadow
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, // Background putih
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2), // Shadow
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3), // Posisi shadow
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade100,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.all(12),
-                      child: Icon(Icons.ac_unit,
-                        size: 30,
-                        color: Colors.blue.shade700,
-                      ),
-                    ),
-
-                    SizedBox(width: 16),
-
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Kapling B',
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Colors.grey[800],
-                            )),
-                          SizedBox(height: 4),
-                          Text('Perum Sakura Indah Cipatujah',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            )),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 16),
-
-              // Wireless Speaker card dengan background putih dan shadow
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white, // Background putih
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2), // Shadow
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: Offset(0, 3), // Posisi shadow
-                    ),
-                  ],
-                ),
-                padding: EdgeInsets.all(16),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade400,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.all(12),
-                      child: Icon(Icons.speaker,
-                        size: 30,
-                        color: Colors.grey.shade800,
-                      ),
-                    ),
-
-                    SizedBox(width: 16),
-
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Kaping C',
-                            style:  GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Colors.grey[800],
-                            )),
-                          SizedBox(height: 4),
-                          Text('Perum Sakura Indah Cipatujah',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.grey[600],
-                            )),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                }),
               ),
             ],
           ),
