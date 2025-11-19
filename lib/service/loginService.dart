@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:aplikator/model/Login.dart';
 
 class LoginService {
-  static const String baseUrl = 'https://15d9cac645c0.ngrok-free.app';
+  static const String baseUrl = 'https://ivory-boar-466427.hostingersite.com';
   static const String loginEndpoint = '/api/aplikator/login';
 
   Future<LoginResponse> login(String email, String password) async {

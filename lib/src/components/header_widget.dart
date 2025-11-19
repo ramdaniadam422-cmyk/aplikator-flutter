@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import '/controller/LoginController.dart'; // Sesuaikan path
 
 class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan lebar layar untuk menentukan radius lengkungan sesuai persentase
     final width = MediaQuery.of(context).size.width;
+    final loginCtrl = Get.find<LoginController>();
 
     return Container(
       width: double.infinity,
-      height: 110, // Sesuaikan tinggi header
+      height: 110,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -20,42 +22,44 @@ class HeaderWidget extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(width * 0.15), // 15% dari lebar layar
+          bottomLeft: Radius.circular(width * 0.15),
           bottomRight: Radius.circular(width * 0.15),
         ),
       ),
       padding: EdgeInsets.fromLTRB(24, 30, 24, 14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Hi Aplikator!',
-            style:  GoogleFonts.inter(
-              color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+      child: Obx(() {
+        final data = loginCtrl.aplikatorData.value;
+        String namaAplikator = 'Aplikator';
+
+        // Ambil dari "nama_lengkap" (sesuai respons API)
+        if (data.isNotEmpty && data.containsKey('nama_lengkap')) {
+          namaAplikator = data['nama_lengkap'];
+        }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi $namaAplikator!',
+              style: GoogleFonts.inter(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-          SizedBox(height: 5),
-          Row(
-            children: [
-              Icon(
-                Icons.location_on,
+            SizedBox(height: 5),
+            // 🔻 Opsional: Hapus bagian lokasi jika tidak ada datanya
+            // Atau ganti dengan teks statis seperti "Selamat datang"
+            Text(
+              'Selamat datang kembali!',
+              style: GoogleFonts.inter(
                 color: Colors.white.withOpacity(0.8),
-                size: 16,
+                fontSize: 14,
               ),
-              SizedBox(width: 6),
-              Text(
-                'Perum Sakura Indah',
-                style: GoogleFonts.inter(
-                  color: Colors.white.withOpacity(0.8),
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
+            ),
+          ],
+        );
+      }),
     );
   }
 }

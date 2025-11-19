@@ -1,4 +1,3 @@
-// lib/controller/BlokController.dart
 import 'package:aplikator/model/Blok.dart';
 import 'package:aplikator/service/BlokService.dart';
 import 'package:get/get.dart';
@@ -18,16 +17,28 @@ class BlokController extends GetxController {
 
   void fetchBlok() async {
     try {
-      isLoading(true);
-      var result = await _service.fetchBlok();
-      blokList.assignAll(result);
-      print("✅ [BlokController] Data blok berhasil dimuat: ${blokList.length} item");
+      if (isClosed) return;
+      isLoading.value = true;
+
+      final result = await _service.fetchBlok();
+
+      if (!isClosed) {
+        blokList.assignAll(result);
+        print("✅ [BlokController] Data blok berhasil dimuat: ${blokList.length} item");
+      }
     } catch (e) {
-      print("❌ [BlokController] Error: $e");
-      // Opsional: tampilkan snackbar error
-      Get.snackbar("Error", "Gagal memuat data blok: $e");
+      if (!isClosed) {
+        print("❌ [BlokController] Error: $e");
+        Get.snackbar(
+          "Error",
+          "Gagal memuat data blok: ${e.toString()}",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      }
     } finally {
-      isLoading(false);
+      if (!isClosed) {
+        isLoading.value = false;
+      }
     }
   }
 }
