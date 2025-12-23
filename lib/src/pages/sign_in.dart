@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:aplikator/controller/LoginController.dart';
+import 'package:aplikator/controller/login_controller.dart';
 
 // SignInPage: Form login dengan GetX
 class SignInPage extends StatelessWidget {
@@ -11,15 +10,9 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Gunakan Get.put jika belum ada, agar aman (jangan sampai crash karena controller belum terdaftar)
-    final LoginController authController = Get.isRegistered<LoginController>()
-        ? Get.find<LoginController>()
-        : Get.put(LoginController());
+    final LoginController authController = Get.find();
 
     final size = MediaQuery.of(context).size;
-
-    final emailController = TextEditingController();
-    final passController = TextEditingController();
-
     // Bersihkan controller saat widget dibuang (opsional, tapi baik untuk kebersihan)
     // Karena ini StatelessWidget, sebenarnya tidak perlu, tapi jika nanti jadi Stateful, ini berguna.
 
@@ -32,10 +25,7 @@ class SignInPage extends StatelessWidget {
         height: size.height,
         decoration: const BoxDecoration(
           gradient: RadialGradient(
-            colors: [
-              Color.fromARGB(255, 89, 196, 245),
-              Colors.white,
-            ],
+            colors: [Color.fromARGB(255, 89, 196, 245), Colors.white],
             center: Alignment.topRight,
             radius: 0.8,
           ),
@@ -55,7 +45,7 @@ class SignInPage extends StatelessWidget {
                     SizedBox(height: size.height * 0.03),
                     logo(size.height / 8, size.height / 8),
                     SizedBox(height: size.height * 0.02),
-                    richText(20.42),
+                    // richText(20.42),
                   ],
                 ),
               ),
@@ -64,9 +54,13 @@ class SignInPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    emailTextField(size, emailController),
+                    emailTextField(size, authController.emailController),
                     SizedBox(height: size.height * 0.02),
-                    passwordTextField(size, passController),
+                    passwordTextField(
+                      size,
+                      authController.passwordController,
+                      authController,
+                    ),
                     SizedBox(height: size.height * 0.01),
                     Align(
                       alignment: Alignment.centerRight,
@@ -83,16 +77,19 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               Expanded(
-                  flex: 1,
-                  child: signInPageButton(
-                      size, authController, emailController, passController)),
+                flex: 1,
+                child: signInPageButton(
+                  size,
+                  authController,
+                  authController.emailController, // pakai dari controller
+                  authController.passwordController, // pakai dari controller
+                ),
+              ),
               Expanded(
                 flex: 3,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: size.height * 0.03),
-                  ],
+                  children: [SizedBox(height: size.height * 0.03)],
                 ),
               ),
             ],
@@ -137,8 +134,8 @@ class SignInPage extends StatelessWidget {
   }
 
   Widget logo(double height_, double width_) {
-    return SvgPicture.asset(
-      'assets/logo2.svg',
+    return Image.asset(
+      'assets/images/logo-sic-v2.png',
       height: height_,
       width: width_,
     );
@@ -193,13 +190,17 @@ class SignInPage extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
-              color: controller.text.isEmpty ? Colors.transparent : const Color(0xFF21899C),
+              color: controller.text.isEmpty
+                  ? Colors.transparent
+                  : const Color(0xFF21899C),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
-              color: controller.text.isEmpty ? Colors.transparent : const Color(0xFF21899C),
+              color: controller.text.isEmpty
+                  ? Colors.transparent
+                  : const Color(0xFF21899C),
             ),
           ),
           prefixIcon: Icon(
@@ -215,109 +216,105 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-  Widget passwordTextField(Size size, TextEditingController controller) {
+  Widget passwordTextField(
+    Size size,
+    TextEditingController controller,
+    LoginController authController,
+  ) {
     return Container(
-      height: size.height / 13,
+      height: size.height / 12, // lebih tinggi biar nyaman
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: const Color.fromRGBO(248, 247, 251, 1),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.lock_outline_rounded,
-              size: 16,
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Obx(
+          () => TextField(
+            controller: controller,
+            style: GoogleFonts.inter(
+              fontSize: 16.0,
+              color: const Color(0xFF151624),
             ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: TextField(
-                controller: controller,
-                style: GoogleFonts.inter(
-                  fontSize: 16.0,
-                  color: const Color(0xFF151624),
+            cursorColor: const Color(0xFF21899C),
+            obscureText: authController.obscure.value,
+            keyboardType: TextInputType.visiblePassword,
+            decoration: InputDecoration(
+              hintText: 'Enter your password',
+              hintStyle: GoogleFonts.inter(
+                fontSize: 16.0,
+                color: const Color(0xFFABB3BB),
+              ),
+              border: InputBorder.none,
+              prefixIcon: const Icon(
+                Icons.lock_outline_rounded,
+                color: Color(0xFF21899C),
+                size: 16,
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  authController.obscure.value
+                      ? Icons.visibility_off
+                      : Icons.visibility,
+                  color: const Color(0xFFFE9879),
+                  size: 16,
                 ),
-                cursorColor: const Color(0xFF21899C),
-                obscureText: true,
-                keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
-                  hintText: 'Enter your password',
-                  hintStyle: GoogleFonts.inter(
-                    fontSize: 16.0,
-                    color: const Color(0xFFABB3BB),
-                  ),
-                  border: InputBorder.none,
-                ),
+                onPressed: () => authController.obscure.toggle(),
               ),
             ),
-            controller.text.isEmpty
-                ? const Center()
-                : Container(
-                    height: 30,
-                    width: 60,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(249, 225, 224, 1),
-                      borderRadius: BorderRadius.circular(4),
-                      border: Border.all(
-                        color: const Color.fromRGBO(254, 152, 121, 1),
-                      ),
-                    ),
-                    child: Text(
-                      'View',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.inter(
-                        fontSize: 12.0,
-                        color: const Color(0xFFFE9879),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget signInPageButton(Size size, LoginController authController,
-      TextEditingController emailController, TextEditingController passController) {
-    return Container(
-      alignment: Alignment.center,
-      height: size.height / 13,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.0),
-        color: authController.isLoading.value ? Colors.grey : const Color(0xFF4FC3F7),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF4C2E84).withOpacity(0.2),
-            offset: const Offset(0, 15.0),
-            blurRadius: 60.0,
+  Widget signInPageButton(
+    Size size,
+    LoginController authController,
+    TextEditingController emailController,
+    TextEditingController passController,
+  ) {
+    return Obx(
+      () => Container(
+        height: size.height / 13,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: authController.isLoading.value
+              ? Colors.grey
+              : const Color(0xFF4FC3F7),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF4C2E84).withOpacity(0.2),
+              offset: const Offset(0, 15.0),
+              blurRadius: 60.0,
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(15),
+            onTap: authController.isLoading.value
+                ? null
+                : () => authController.login(
+                    emailController.text.trim(),
+                    passController.text,
+                  ),
+            child: Center(
+              child: authController.isLoading.value
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : Text(
+                      'Sign in',
+                      style: GoogleFonts.inter(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+            ),
           ),
-        ],
-      ),
-      child: InkWell(
-        onTap: authController.isLoading.value
-            ? null
-            : () {
-                if (emailController.text.isEmpty || passController.text.isEmpty) {
-                  Get.snackbar('Error', 'Email dan password harus diisi');
-                  return;
-                }
-                authController.login(emailController.text, passController.text);
-              },
-        child: Obx(() => authController.isLoading.value
-            ? const CircularProgressIndicator(color: Colors.white)
-            : Text(
-                'Sign in',
-                style: GoogleFonts.inter(
-                  fontSize: 16.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  height: 1.5,
-                ),
-                textAlign: TextAlign.center,
-              )),
+        ),
       ),
     );
   }

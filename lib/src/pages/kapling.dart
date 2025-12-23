@@ -1,5 +1,6 @@
 import 'package:aplikator/model/Blok.dart';
 import 'package:aplikator/src/pages/kapling_detail.dart';
+import 'package:aplikator/src/pages/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,10 +15,7 @@ class KaplingPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           blok.nama,
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            fontSize: 18,
-          ),
+          style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 18),
         ),
         backgroundColor: Colors.blue.shade400,
       ),
@@ -35,11 +33,9 @@ class KaplingPage extends StatelessWidget {
             final kapling = blok.kaplings[index];
             return GestureDetector(
               onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => KaplingDetailPage(),
-                  ),
-                ); 
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => MenuPage()));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -48,8 +44,8 @@ class KaplingPage extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.2),
-                     spreadRadius: 2,
-                        blurRadius: 5,
+                      spreadRadius: 2,
+                      blurRadius: 5,
                       offset: const Offset(0, 3),
                     ),
                   ],

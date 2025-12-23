@@ -1,50 +1,20 @@
-// ProgresPage class
-import 'package:aplikator/src/components/button_submit.dart';
 import 'package:aplikator/src/components/input_widget_v2.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ProgresPage extends StatefulWidget {
-  const ProgresPage({Key? key}) : super(key: key);
-
-  @override
-  State<ProgresPage> createState() => _ProgresPageState();
-}
-
-class _ProgresPageState extends State<ProgresPage> {
-  bool agreeChecked = false;
-
-  final controllerName = TextEditingController();
-  final controllerEmail = TextEditingController();
-  final controllerPassword = TextEditingController();
-  final controllerConfirmPassword = TextEditingController();
-
-  void onRegister() {
-    // contoh aksi submit
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text("Register pressed!")));
-  }
+class MaterialOrderPage extends StatelessWidget {
+  MaterialOrderPage({super.key});
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   @override
-  void dispose() {
-    controllerName.dispose();
-    controllerEmail.dispose();
-    controllerPassword.dispose();
-    controllerConfirmPassword.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Progres',
+          'Permintaan Material',
           style: GoogleFonts.poppins(fontWeight: FontWeight.w800, fontSize: 18),
         ),
         centerTitle: true,
@@ -122,7 +92,27 @@ class _ProgresPageState extends State<ProgresPage> {
                 ),
                 SizedBox(height: 10),
 
-                ButtonSubmit(onPressed: agreeChecked ? onRegister : null),
+                // tombol submit
+                Center(
+                  child: Container(
+                    width: 200,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade800,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Submit',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

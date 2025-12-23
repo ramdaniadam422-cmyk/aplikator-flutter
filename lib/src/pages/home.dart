@@ -1,5 +1,6 @@
 // lib/src/pages/home.dart
 import 'package:aplikator/controller/BlokController.dart';
+import 'package:aplikator/controller/login_controller.dart';
 import 'package:aplikator/src/components/header_widget.dart';
 import 'package:aplikator/src/pages/kapling.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +8,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key}) : super(key: key);
+  final BlokController blokController = Get.find<BlokController>();
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   late BlokController blokController;
+  late LoginController loginController = Get.find<LoginController>();
 
   @override
   void initState() {
@@ -53,8 +55,24 @@ class _HomePageState extends State<HomePage> {
                     return Center(child: CircularProgressIndicator());
                   }
 
+                  if (blokController.errorMessage.isNotEmpty) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(blokController.errorMessage.value),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: () => blokController.refreshData(),
+                            child: Text('Coba Lagi'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
                   if (blokController.blokList.isEmpty) {
-                    return Center(child: Text("Data blok kosong"));
+                    return Center(child: Text('Tidak ada data blok'));
                   }
 
                   return ListView.builder(
@@ -133,6 +151,13 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue.shade700,
+        child: Icon(Icons.output, color: Colors.white),
+        onPressed: () {
+          loginController.logout();
+        },
       ),
     );
   }

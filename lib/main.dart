@@ -1,17 +1,13 @@
+import 'package:aplikator/controller/BlokController.dart';
+import 'package:aplikator/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_storage/get_storage.dart';
 import 'src/pages/splash_screen.dart';
-import 'controller/LoginController.dart'; // ✅ tambahkan import
 
+// main.dart
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferences.getInstance();
-
-  // ✅ Inisialisasi LoginController dan muat data dari storage
-  final loginController = Get.put(LoginController());
-   await loginController.loadAplikatorFromStorage();
-
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -20,9 +16,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: const SplashScreen(),
+      // Tambahkan binding untuk inisialisasi controller
+      initialBinding: BindingsBuilder(() {
+        Get.put(LoginController(), permanent: true);
+        Get.put(BlokController(), permanent: true); // tambahkan
+      }),
     );
   }
 }

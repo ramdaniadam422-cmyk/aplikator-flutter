@@ -1,52 +1,42 @@
-import 'dart:async';
+// src/pages/splash_screen.dart
 
-import 'package:aplikator/src/pages/home.dart';
-import 'package:aplikator/src/pages/sign_in_9.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:aplikator/controller/LoginController.dart';
+import 'package:aplikator/controller/login_controller.dart';
+import 'package:aplikator/src/pages/home.dart';
+import 'package:aplikator/src/pages/sign_in.dart';
 
-
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  final LoginController authController = Get.put(LoginController());
-
-  @override
-  void initState() {
-    super.initState();
-    _checkLoginStatus();
-  }
-
-  Future<void> _checkLoginStatus() async {
-    String? token = await authController.getToken();
-    if (token != null) {
-      Get.offAll(() => HomePage());
-    } else {
-      Timer(const Duration(seconds: 3), () {
-        Get.offAll(() => const SignInPage());
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final authCtrl = Get.find<LoginController>();
+
+    Future.delayed(const Duration(seconds: 2), () {
+      if (authCtrl.isLoggedIn) {
+        Get.offAll(() => HomePage());
+      } else {
+        Get.offAll(() => const SignInPage());
+      }
+    });
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             logo(160, 160),
-            const SizedBox(height: 25),
-            richText(30),
+            const SizedBox(height: 30),
+            // richText(32),
+            // const SizedBox(height: 50),
+            // const CircularProgressIndicator(
+            //   color: Color(0xFF4FC3F7),
+            //   strokeWidth: 3,
+            // ),
           ],
         ),
       ),
@@ -54,8 +44,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget logo(double height_, double width_) {
-    return SvgPicture.asset(
-      'assets/logo.svg',
+    return Image.asset(
+      'assets/images/logo-sic-v2.png',
       height: height_,
       width: width_,
     );
@@ -69,23 +59,15 @@ class _SplashScreenState extends State<SplashScreen> {
           color: const Color(0xFF21899C),
           letterSpacing: 3,
           height: 1.03,
+          fontWeight: FontWeight.w800,
         ),
         children: const [
+          TextSpan(text: 'LOGIN '),
           TextSpan(
-            text: 'LOGIN ',
-            style: TextStyle(fontWeight: FontWeight.w800),
+            text: 'PAGES\nUI ',
+            style: TextStyle(color: Color(0xFFFE9879)),
           ),
-          TextSpan(
-            text: 'PAGES \nUI ',
-            style: TextStyle(
-              color: Color(0xFFFE9879),
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          TextSpan(
-            text: 'KIT',
-            style: TextStyle(fontWeight: FontWeight.w800),
-          ),
+          TextSpan(text: 'KIT'),
         ],
       ),
       textAlign: TextAlign.center,
